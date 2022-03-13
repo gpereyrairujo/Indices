@@ -116,7 +116,6 @@ function plots(xcoord, ycoord, measure) {
 			plot = ""+j+1+"-"+i+1;
 			xcenter = (pxtopleft+pxbottomright)/2;
 			ycenter = (pytopleft+pybottomright)/2;
-			size = abs(((pxtopleft-pxbottomright)+(pytopleft-pybottomright)+(pxtopright-pxbottomleft)+(pytopright-pybottomleft))/4/2);
 			setFont("SanSerif", font_size, "antialiased");
   			setColor("blue");
 			Overlay.drawString(plot, xcenter, ycenter);
