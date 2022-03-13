@@ -6,7 +6,7 @@ macro "Parcelas" {
 run("Set Measurements...", "area mean standard centroid median min max display redirect=None decimal=3");
 
 columns=4;
-rows=4;
+rows=3;
 xborder=0.25;
 yborder=0.25;
 
@@ -66,6 +66,8 @@ function plots(xcoord, ycoord, measure) {
 	yoffset_right=(ybottomright-ytopright)/rows;
 	yoffset_bottom=(ybottomright-ybottomleft)/columns;
 	yoffset_left=(ybottomleft-ytopleft)/rows;
+
+	font_size = (abs(xoffset_top)+abs(xoffset_right)+abs(xoffset_bottom)+abs(xoffset_left)+abs(yoffset_top)+abs(yoffset_right)+abs(yoffset_bottom)+abs(yoffset_left))/8/5;
 	
 	for(i=0; i<columns+1; i++) {
 		Overlay.drawLine(xtopleft+xoffset_top*i, ytopleft+yoffset_top*i, xbottomleft+xoffset_bottom*i, ybottomleft+yoffset_bottom*i);
@@ -111,10 +113,20 @@ function plots(xcoord, ycoord, measure) {
 			Overlay.add;
 			makePolygon(pxtopleft, pytopleft, pxtopright, pytopright, pxbottomright, pybottomright, pxbottomleft, pybottomleft);
 
+			plot = ""+j+1+"-"+i+1;
+			xcenter = (pxtopleft+pxbottomright)/2;
+			ycenter = (pytopleft+pybottomright)/2;
+			size = abs(((pxtopleft-pxbottomright)+(pytopleft-pybottomright)+(pxtopright-pxbottomleft)+(pytopright-pybottomleft))/4/2);
+			setFont("SanSerif", font_size, "antialiased");
+  			setColor("blue");
+			Overlay.drawString(plot, xcenter, ycenter);
+			Overlay.add;
+			
 			if (measure) {
 				run("Measure");
 				setResult("Fila", nResults-1, j+1);
 				setResult("Columna", nResults-1, i+1);
+				setResult("Parcela", nResults-1, plot);
 				updateResults();
 				}
 	
