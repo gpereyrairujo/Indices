@@ -113,7 +113,7 @@ function plots(xcoord, ycoord, measure) {
 			Overlay.add;
 			makePolygon(pxtopleft, pytopleft, pxtopright, pytopright, pxbottomright, pybottomright, pxbottomleft, pybottomleft);
 
-			plot = ""+j+1+"-"+i+1;
+			plot = ""+j+1+"_"+i+1;
 			xcenter = (pxtopleft+pxbottomright)/2;
 			ycenter = (pytopleft+pybottomright)/2;
 			setFont("SanSerif", font_size, "antialiased");
